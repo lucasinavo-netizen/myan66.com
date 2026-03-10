@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import CasinoListPage from '@/components/CasinoListPage';
 import { casinos } from '@/data/casinos';
@@ -16,6 +17,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 }
 
 export default async function MobileCasinosPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'pages.mobileCasino' });
   const mobileCasinos = casinos.filter(c =>
     c.features.some(f => f.toLowerCase().includes('mobile'))

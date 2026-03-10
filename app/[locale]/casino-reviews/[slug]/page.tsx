@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -15,6 +16,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
+  setRequestLocale(locale);
   const casino = getCasinoById(slug);
   if (!casino) return {};
   return {
@@ -32,6 +34,7 @@ export default function CasinoReviewPage({
 }: {
   params: { locale: string; slug: string };
 }) {
+  setRequestLocale(locale);
   const casino = getCasinoById(slug);
   if (!casino) notFound();
 

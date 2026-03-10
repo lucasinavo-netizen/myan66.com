@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import CasinoListPage from '@/components/CasinoListPage';
 import { getFastWithdrawalCasinos } from '@/data/casinos';
@@ -19,6 +20,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 }
 
 export default async function FastWithdrawalPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'pages.fastWithdrawal' });
   const fastCasinos = getFastWithdrawalCasinos();
 

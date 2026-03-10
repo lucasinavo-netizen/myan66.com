@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import CasinoCard from '@/components/CasinoCard';
 import { casinos } from '@/data/casinos';
@@ -10,6 +11,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
+  setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'hero' });
   return {
     title:
@@ -150,6 +152,7 @@ function CategoryCards({ locale }: { locale: string }) {
 }
 
 export default function HomePage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const t = useTranslations('ratings');
 
   return (

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -25,6 +26,7 @@ const paymentMethods = [
 ];
 
 export default function PaymentMethodsPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const isMy = locale === 'my';
 
   return (

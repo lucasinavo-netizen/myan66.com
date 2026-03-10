@@ -1,3 +1,5 @@
+'use client';
+
 import CasinoCard from './CasinoCard';
 import type { Casino } from '@/data/casinos';
 

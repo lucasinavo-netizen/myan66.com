@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { casinos } from '@/data/casinos';
@@ -16,6 +17,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 }
 
 export default function CasinoReviewsPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   return (
     <>
       <section className="bg-gradient-to-b from-brand-primary/20 to-brand-dark py-14 px-4 border-b border-gray-800">
