@@ -1,0 +1,76 @@
+{
+  "nav": {
+    "home": "Home",
+    "casinos": "Online Casinos",
+    "bestCasinos": "Best Casinos",
+    "liveCasino": "Live Casino",
+    "mobileCasino": "Mobile Casino",
+    "fastWithdrawal": "Fast Withdrawal",
+    "bonuses": "Bonuses",
+    "reviews": "Reviews",
+    "payments": "Payments",
+    "responsible": "Responsible Gambling"
+  },
+  "hero": {
+    "title": "Best Online Casinos in Myanmar 2026",
+    "subtitle": "We independently review safe and trusted platforms for Myanmar players",
+    "cta": "View All Casinos",
+    "badge": "Expert Verified"
+  },
+  "ratings": {
+    "title": "Our Recommended Casinos",
+    "subtitle": "Ranked by security, bonuses, and payment options",
+    "playNow": "Play Now",
+    "readReview": "Read Review",
+    "bonus": "Bonus",
+    "rating": "Rating",
+    "withdrawal": "Withdrawal Speed",
+    "minDeposit": "Min. Deposit"
+  },
+  "features": {
+    "safe": "Safe Gaming",
+    "safeDesc": "All platforms we recommend are fully secure for Myanmar players",
+    "fast": "Fast Withdrawals",
+    "fastDesc": "Selected platforms feature fast and reliable payment processing",
+    "bonus": "Great Bonuses",
+    "bonusDesc": "Exclusive bonuses and promotions for Myanmar players"
+  },
+  "payment": {
+    "title": "Supported Payment Methods",
+    "subtitle": "Popular payment methods used by Myanmar players"
+  },
+  "footer": {
+    "disclaimer": "MyanBetHub is an independent review website not affiliated with any gambling operator. Gambling involves risk of financial loss. We always recommend responsible gambling. Gambling under 18 is strictly prohibited.",
+    "rights": "All rights reserved"
+  },
+  "pages": {
+    "onlineCasinos": {
+      "title": "Best Online Casinos in Myanmar 2026",
+      "description": "Expert-reviewed top online casinos for Myanmar players — safe, licensed, and trusted"
+    },
+    "bestCasinos": {
+      "title": "Top Rated Online Casinos in Myanmar 2026",
+      "description": "The highest-rated casinos — ranked by security, bonuses, and game selection"
+    },
+    "liveCasino": {
+      "title": "Best Live Casino Sites in Myanmar 2026",
+      "description": "Top platforms with professional live dealers for Myanmar players"
+    },
+    "mobileCasino": {
+      "title": "Best Mobile Casinos in Myanmar 2026",
+      "description": "Top casino apps and mobile-friendly sites for Myanmar players"
+    },
+    "fastWithdrawal": {
+      "title": "Fastest Withdrawal Casinos in Myanmar 2026",
+      "description": "Casinos that process withdrawals in 30 minutes to 2 hours"
+    },
+    "bonuses": {
+      "title": "Best Casino Welcome Bonuses in Myanmar 2026",
+      "description": "Biggest and best welcome bonuses available to Myanmar players"
+    },
+    "trusted": {
+      "title": "Trusted Casino Sites in Myanmar 2026",
+      "description": "Licensed and verified trusted online casinos for Myanmar players"
+    }
+  }
+}
