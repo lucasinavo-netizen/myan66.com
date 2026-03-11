@@ -3,6 +3,24 @@
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 
+const PARTNER_SITES = [
+  { name: 'Myan Casino', url: 'https://myancasino.com' },
+  { name: 'Myan Slots', url: 'https://myanslots.com' },
+  { name: 'Myan Bet App', url: 'https://myanbetapp.com' },
+  { name: 'Myan Bets', url: 'https://myanbets.com' },
+  { name: 'Myan Slots App', url: 'https://myanslotsapp.com' },
+  { name: 'Betplay03', url: 'https://betplay03.com' },
+  { name: 'Betplay04', url: 'https://betplay04.com' },
+  { name: 'Betplay06', url: 'https://betplay06.com' },
+  { name: 'Col44 Casino', url: 'https://col44.com' },
+  { name: 'Col66 Casino', url: 'https://col66.com' },
+  { name: 'Rusbeth Casino', url: 'https://rusbethcasino.com' },
+  { name: 'Zamba Slots', url: 'https://zambaslots.com' },
+  { name: 'Slots Myan', url: 'https://slotsmyan.com' },
+  { name: 'Shwe Casino 99', url: 'https://shwecasino99.com' },
+  { name: 'PV991 Casino', url: 'https://pv991.com' },
+];
+
 export default function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
@@ -74,6 +92,26 @@ export default function Footer() {
                 </span>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Partner Sites */}
+        <div className="border-t border-gray-800 pt-6 mb-6">
+          <h3 className="text-white font-semibold mb-3 text-sm">
+            🎰 {locale === 'my' ? 'မိတ်ဖက်ကာစီနိုများ' : 'Trusted Casino Partners'}
+          </h3>
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            {PARTNER_SITES.map((site) => (
+              <a
+                key={site.url}
+                href={site.url}
+                target="_blank"
+                rel="noopener"
+                className="text-yellow-400 hover:text-yellow-300 text-xs transition-colors"
+              >
+                {site.name}
+              </a>
+            ))}
           </div>
         </div>
 
