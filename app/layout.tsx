@@ -11,6 +11,11 @@ export const metadata: Metadata = {
     template: '%s | MyanmarBetHub',
   },
   description: 'Independent reviews of the best online casinos for Myanmar players. Safe, licensed, and trusted platforms.',
+  verification: {
+    other: {
+      'msvalidate.01': '2D973802B87E9F5B2AB4DDD38DD14E60',
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
