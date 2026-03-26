@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://yourdomain.com',
+  siteUrl: process.env.SITE_URL || 'https://myan66.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   changefreq: 'weekly',
@@ -11,8 +11,8 @@ module.exports = {
     ],
   },
   alternateRefs: [
-    { href: 'https://yourdomain.com/my', hreflang: 'my' },
-    { href: 'https://yourdomain.com/en', hreflang: 'en' },
+    { href: 'https://myan66.com/my', hreflang: 'my' },
+    { href: 'https://myan66.com/en', hreflang: 'en' },
   ],
   transform: async (config, path) => {
     // Higher priority for important pages

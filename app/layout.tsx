@@ -5,7 +5,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://yourdomain.com'),
+  metadataBase: new URL('https://myan66.com'),
   title: {
     default: 'MyanmarBetHub - Best Online Casinos in Myanmar',
     template: '%s | MyanmarBetHub',
