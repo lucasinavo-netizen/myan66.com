@@ -1,0 +1,23 @@
+# myan66.com
+
+> MyanmarBetHub - မြန်မာနိုင်ငံ အကောင်းဆုံး အွန်လိုင်းကာစီနိုများ ၂၀၂၆ | MyanmarBetHub
+
+မြန်မာကစားသမားများအတွက် လုံခြုံပြီး ယုံကြည်ရသော ကာစီနိုများကို ကျွမ်းကျင်သူများမှ သုံးသပ်ထားသည်
+
+## Pages
+
+- [MyanmarBetHub - မြန်မာနိုင်ငံ အကောင်းဆုံး အွန်လိုင်းကာစီနိုများ ၂၀၂၆ | MyanmarBetHub](https://myan66.com/my): မြန်မာကစားသမားများအတွက် လုံခြုံပြီး ယုံကြည်ရသော ကာစီနိုများကို ကျွမ်းကျင်သူများမှ သုံးသပ်ထားသည်
+
+## Topics
+
+This site provides information and comparisons related to online gaming and betting platforms in Myanmar.
+
+## Content Language
+
+- Primary: my
+
+## Crawler Guidelines
+
+- This site's content is original and may be cited with attribution.
+- Please respect our robots.txt for crawl budgets.
+- For commercial use of our content, contact the site owner.
