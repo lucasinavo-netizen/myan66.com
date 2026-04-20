@@ -16,6 +16,10 @@ export const metadata: Metadata = {
       'msvalidate.01': '2D973802B87E9F5B2AB4DDD38DD14E60',
     },
   },
+
+  openGraph: { images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'myan66.com' }] },
+  twitter: { card: 'summary_large_image', images: ['/og-image.png'] },
+  robots: { index: true, follow: true, googleBot: { 'max-image-preview': 'large' } },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -26,17 +30,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }
 
-
-// Wave 1 SEO additions
-export const seoWave1 = {
-  openGraph: {
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'myan66.com' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: "MyanmarBetHub - မြန်မာနိုင်ငံ အကောင်းဆုံး အွန်လိုင်းကာစီနိုများ ၂၀၂၆ |",
-    description: "မြန်မာကစားသမားများအတွက် လုံခြုံပြီး ယုံကြည်ရသော ကာစီနိုများကို ကျွမ်းကျင်သူများမှ သုံးသပ်ထားသည်",
-    images: ['/og-image.png'],
-  },
-  robots: { index: true, follow: true, googleBot: { 'max-image-preview': 'large' } },
-};
