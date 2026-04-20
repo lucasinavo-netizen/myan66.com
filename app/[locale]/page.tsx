@@ -37,6 +37,7 @@ export async function generateMetadata({
           : 'Best online casinos for Myanmar players',
       locale: locale,
       type: 'website',
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'myan66.com' }],
     },
   };
 }
