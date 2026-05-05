@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   },
   description: 'Independent reviews of the best online casinos for Myanmar players. Safe, licensed, and trusted platforms.',
   verification: {
+    google: 'K_lQt8BkgUKrXFre8PLBa08z3oX-UD2w03pAhb-fuF8',
     other: {
       'msvalidate.01': '2D973802B87E9F5B2AB4DDD38DD14E60',
     },
@@ -29,4 +30,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
