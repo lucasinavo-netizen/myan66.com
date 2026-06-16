@@ -30,9 +30,48 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  const baseUrl = 'https://myan66.com';
+  const langCode = locale === 'my' ? 'my-MM' : 'en';
+
+  const schemaGraph = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${baseUrl}/#organization`,
+        'name': 'MyanmarBetHub',
+        'url': baseUrl,
+        'logo': {
+          '@type': 'ImageObject',
+          'url': `${baseUrl}/og-image.png`,
+          'width': 1200,
+          'height': 630,
+        },
+        'description':
+          locale === 'my'
+            ? 'မြန်မာနိုင်ငံ အကောင်းဆုံး အွန်လိုင်းကာစီနိုများ ၂၀၂၆'
+            : 'Best online casinos in Myanmar 2026',
+        'knowsLanguage': ['my', 'en'],
+        'areaServed': { '@type': 'Country', 'name': 'Myanmar' },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${baseUrl}/#website`,
+        'url': baseUrl,
+        'name': 'MyanmarBetHub',
+        'publisher': { '@id': `${baseUrl}/#organization` },
+        'inLanguage': langCode,
+      },
+    ],
+  };
+
   return (
     <html lang={locale}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
+        />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main className="min-h-screen">{children}</main>
