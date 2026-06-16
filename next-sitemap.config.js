@@ -7,7 +7,7 @@ module.exports = {
   priority: 0.7,
   robotsTxtOptions: {
     policies: [
-      { userAgent: '*', allow: '/' },
+      { userAgent: '*', allow: '/', disallow: ['/go/'] },
     ],
   },
   alternateRefs: [
