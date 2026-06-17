@@ -30,6 +30,7 @@ export default function Footer() {
     { label: locale === 'my' ? 'တိုက်ရိုက်ကာစီနို' : 'Live Casino', href: '/live-casino-sites-myanmar' },
     { label: locale === 'my' ? 'မိုဘိုင်းကာစီနို' : 'Mobile Casino', href: '/mobile-casinos-myanmar' },
     { label: locale === 'my' ? 'ဘောနပ်စ်' : 'Bonuses', href: '/best-welcome-bonuses-myanmar' },
+    { label: locale === 'my' ? 'ဘောနပ်စ်စည်းကမ်း' : 'Bonus Terms', href: '/casino-bonus-terms-guide' },
     { label: locale === 'my' ? 'ငွေပေးချေမှု' : 'Payments', href: '/casino-payment-methods-myanmar' },
     { label: locale === 'my' ? 'တာဝန်ရှိသောကစား' : 'Responsible Gambling', href: '/responsible-gambling' },
   ];
