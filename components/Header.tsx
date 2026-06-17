@@ -16,6 +16,7 @@ export default function Header() {
     { key: 'mobileCasino', href: '/mobile-casinos-myanmar' },
     { key: 'fastWithdrawal', href: '/fast-withdrawal-casinos-myanmar' },
     { key: 'bonuses', href: '/best-welcome-bonuses-myanmar' },
+    { key: 'bonusTerms', href: '/casino-bonus-terms-guide' },
     { key: 'reviews', href: '/casino-reviews' },
     { key: 'payments', href: '/casino-payment-methods-myanmar' },
   ] as const;
