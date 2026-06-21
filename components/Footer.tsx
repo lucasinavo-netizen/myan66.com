@@ -107,7 +107,7 @@ export default function Footer() {
                 key={site.url}
                 href={site.url}
                 target="_blank"
-                rel="noopener"
+                rel="nofollow noopener noreferrer"
                 className="text-yellow-400 hover:text-yellow-300 text-xs transition-colors"
               >
                 {site.name}
