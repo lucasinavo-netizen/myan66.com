@@ -107,7 +107,7 @@ export default function CasinoCard({ casino, rank }: CasinoCardProps) {
           <a
             href={casino.url}
             target="_blank"
-            rel="noopener noreferrer sponsored"
+            rel="sponsored nofollow noopener noreferrer"
             className="flex-1 bg-brand-accent hover:bg-yellow-400 text-black font-bold py-2.5 px-4 rounded-lg text-center text-sm transition-colors"
           >
             {locale === 'my' ? 'ယခုကစားပါ' : 'Play Now'}

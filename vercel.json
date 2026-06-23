@@ -1,10 +1,13 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "regions": [
-    "sin1"
+  "rewrites": [
+    {
+      "source": "/go/m6",
+      "destination": "/api/go?to=rr95"
+    },
+    {
+      "source": "/go/m62",
+      "destination": "/api/go?to=mm38"
+    }
   ],
   "headers": [
     {
@@ -25,11 +28,11 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/go/m6",
-      "destination": "https://www.rr95k.com/?ch=0cf28df51e",
-      "permanent": false
-    }
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "regions": [
+    "sin1"
   ]
 }
