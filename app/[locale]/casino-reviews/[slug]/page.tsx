@@ -84,7 +84,7 @@ export default function CasinoReviewPage({
           <a
             href={casino.url}
             target="_blank"
-            rel="noopener noreferrer sponsored"
+            rel="sponsored nofollow noopener noreferrer"
             className="w-full md:w-auto bg-brand-accent hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl text-center transition-all"
           >
             {locale === 'my' ? 'ယခုကစားပါ' : 'Play Now'}
@@ -168,7 +168,7 @@ export default function CasinoReviewPage({
         <a
           href={casino.url}
           target="_blank"
-          rel="noopener noreferrer sponsored"
+          rel="sponsored nofollow noopener noreferrer"
           className="inline-flex items-center gap-2 bg-brand-accent hover:bg-yellow-400 text-black font-bold py-3.5 px-10 rounded-xl text-lg transition-all hover:scale-105"
         >
           {locale === 'my' ? 'ယခု မှတ်ပုံတင်ပါ →' : 'Sign Up Now →'}

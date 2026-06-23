@@ -4,21 +4,21 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 
 const PARTNER_SITES = [
-  { name: 'Myan Casino', url: 'https://myancasino.com' },
-  { name: 'Myan Slots', url: 'https://myanslots.com' },
-  { name: 'Myan Bet App', url: 'https://myanbetapp.com' },
-  { name: 'Myan Bets', url: 'https://myanbets.com' },
-  { name: 'Myan Slots App', url: 'https://myanslotsapp.com' },
-  { name: 'Betplay03', url: 'https://betplay03.com' },
-  { name: 'Betplay04', url: 'https://betplay04.com' },
-  { name: 'Betplay06', url: 'https://betplay06.com' },
-  { name: 'Col44 Casino', url: 'https://col44.com' },
-  { name: 'Col66 Casino', url: 'https://col66.com' },
-  { name: 'Rusbeth Casino', url: 'https://rusbethcasino.com' },
-  { name: 'Zamba Slots', url: 'https://zambaslots.com' },
-  { name: 'Slots Myan', url: 'https://slotsmyan.com' },
-  { name: 'Shwe Casino 99', url: 'https://shwecasino99.com' },
-  { name: 'PV991 Casino', url: 'https://pv991.com' },
+  { name: 'Myan Casino', url: '/go/m62' },
+  { name: 'Myan Slots', url: '/go/m6' },
+  { name: 'Myan Bet App', url: '/go/m62' },
+  { name: 'Myan Bets', url: '/go/m6' },
+  { name: 'Myan Slots App', url: '/go/m62' },
+  { name: 'Betplay03', url: '/go/m6' },
+  { name: 'Betplay04', url: '/go/m62' },
+  { name: 'Betplay06', url: '/go/m6' },
+  { name: 'Col44 Casino', url: '/go/m62' },
+  { name: 'Col66 Casino', url: '/go/m6' },
+  { name: 'Rusbeth Casino', url: '/go/m62' },
+  { name: 'Zamba Slots', url: '/go/m6' },
+  { name: 'Slots Myan', url: '/go/m62' },
+  { name: 'Shwe Casino 99', url: '/go/m6' },
+  { name: 'PV991 Casino', url: '/go/m62' },
 ];
 
 export default function Footer() {
@@ -104,10 +104,10 @@ export default function Footer() {
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             {PARTNER_SITES.map((site) => (
               <a
-                key={site.url}
+                key={site.name}
                 href={site.url}
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="sponsored nofollow noopener noreferrer"
                 className="text-yellow-400 hover:text-yellow-300 text-xs transition-colors"
               >
                 {site.name}
