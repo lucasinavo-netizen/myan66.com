@@ -4,14 +4,14 @@ import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-const locales = ['my', 'en'];
+import { isLocale, locales } from '@/lib/i18n';
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  if (!isLocale(locale)) return {};
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'hero' });
   return {
@@ -26,7 +26,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  if (!locales.includes(locale)) notFound();
+  if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
 
   const messages = await getMessages();
@@ -40,7 +40,7 @@ export default async function LocaleLayout({
       {
         '@type': 'Organization',
         '@id': `${baseUrl}/#organization`,
-        'name': 'MyanmarBetHub',
+        'name': 'Myan66',
         'url': baseUrl,
         'logo': {
           '@type': 'ImageObject',
@@ -50,8 +50,8 @@ export default async function LocaleLayout({
         },
         'description':
           locale === 'my'
-            ? 'မြန်မာနိုင်ငံ အကောင်းဆုံး အွန်လိုင်းကာစီနိုများ ၂၀၂၆'
-            : 'Best online casinos in Myanmar 2026',
+            ? 'Shan Koe Mee APK, M9 login နှင့် Joy Shan Koe Mee လမ်းညွှန်'
+            : 'Shan Koe Mee APK, M9 login and Joy Shan Koe Mee guide',
         'knowsLanguage': ['my', 'en'],
         'areaServed': { '@type': 'Country', 'name': 'Myanmar' },
       },
@@ -59,7 +59,7 @@ export default async function LocaleLayout({
         '@type': 'WebSite',
         '@id': `${baseUrl}/#website`,
         'url': baseUrl,
-        'name': 'MyanmarBetHub',
+        'name': 'Myan66',
         'publisher': { '@id': `${baseUrl}/#organization` },
         'inLanguage': langCode,
       },
@@ -67,30 +67,30 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale}>
-      <body>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-B0FZNEVMTT"
-          strategy="afterInteractive"
-        />
-        <Script id="ga4" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-B0FZNEVMTT');
-          `}
-        </Script>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
-        />
-        <NextIntlClientProvider messages={messages}>
+    <>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-B0FZNEVMTT"
+        strategy="afterInteractive"
+      />
+      <Script id="ga4" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-B0FZNEVMTT');
+        `}
+      </Script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
+      />
+      <NextIntlClientProvider messages={messages}>
+        <div lang={langCode}>
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+        </div>
+      </NextIntlClientProvider>
+    </>
   );
 }

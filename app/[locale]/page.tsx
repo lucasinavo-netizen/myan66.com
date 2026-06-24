@@ -1,27 +1,173 @@
-import { useTranslations } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
-import { setRequestLocale } from 'next-intl/server';
-import Link from 'next/link';
-import CasinoCard from '@/components/CasinoCard';
-import { casinos } from '@/data/casinos';
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { isLocale } from '@/lib/i18n';
+
+const baseUrl = 'https://myan66.com';
+
+const copy = {
+  my: {
+    title: 'Myan66 Shan Koe Mee APK Download Guide 2026',
+    description:
+      'Shan Koe Mee apk download, M9 Shan Koe Mee login, M9 apk and Joy Shan Koe Mee guide for Myanmar players.',
+    badge: 'Shan Koe Mee Myanmar Guide',
+    h1: 'Shan Koe Mee APK Download Myanmar 2026',
+    subtitle:
+      'Myan66 သည် မြန်မာကစားသမားများအတွက် Shan Koe Mee app, M9 Shan Koe Mee login, apk download နှင့် Joy Shan Koe Mee ကို တစ်နေရာတည်းတွင် နှိုင်းယှဉ်ရှင်းပြသော လမ်းညွှန်ဖြစ်သည်။',
+    primaryCta: 'Shan Koe Mee APK လမ်းညွှန်',
+    secondaryCta: 'M9 Login ဖတ်ရန်',
+    trustTitle: 'Myan66 တွင် အဓိကစစ်ဆေးသောအချက်များ',
+    clusterTitle: 'Shan Koe Mee Topic Cluster',
+    clusterIntro:
+      'Shan Koe Mee ကိုရှာသော user များသည် download link တစ်ခုတည်းမဟုတ်ဘဲ app source, login stability, payment flow နှင့် game rule ကိုပါသိချင်ကြသည်။ ထို့ကြောင့် Myan66 သည် generic casino စာမျက်နှာများအစား Shan Koe Mee, M9 နှင့် Joy intent ကို သီးခြားခွဲ၍ရှင်းပြသည်။',
+    compareTitle: 'M9, Joy နှင့် Shan Koe Mee APK ကို ဘယ်လိုရွေးမလဲ',
+    guideTitle: 'Shan Koe Mee ကစားမည့်သူများအတွက် စစ်ဆေးရန်အချက်များ',
+    faqTitle: 'မေးလေ့ရှိသောမေးခွန်းများ',
+    responsible:
+      'Shan Koe Mee နှင့် အွန်လိုင်းကစားနည်းများသည် ငွေကြေးဆုံးရှုံးနိုင်ချေရှိသည်။ အသက် 18 နှစ်အောက် မကစားသင့်ပါ။ ဘတ်ဂျက်သတ်မှတ်ပြီး အပန်းဖြေရန်အတွက်သာ အသုံးပြုပါ။',
+  },
+  en: {
+    title: 'Myan66 Shan Koe Mee APK Download Guide 2026',
+    description:
+      'Myanmar guide for Shan Koe Mee apk download, M9 Shan Koe Mee login, M9 apk and Joy Shan Koe Mee app options.',
+    badge: 'Shan Koe Mee Myanmar Guide',
+    h1: 'Shan Koe Mee APK Download Myanmar 2026',
+    subtitle:
+      'Myan66 is a focused Myanmar guide for Shan Koe Mee app downloads, M9 Shan Koe Mee login, M9 apk setup, and Joy Shan Koe Mee comparisons.',
+    primaryCta: 'Read APK Guide',
+    secondaryCta: 'M9 Login Guide',
+    trustTitle: 'What Myan66 Checks First',
+    clusterTitle: 'Shan Koe Mee Topic Cluster',
+    clusterIntro:
+      'People searching for Shan Koe Mee need more than a download link. They need source checks, login stability, payment flow, and basic rule clarity. Myan66 now separates Shan Koe Mee, M9, and Joy intent instead of treating every query as a generic casino search.',
+    compareTitle: 'How to Choose Between M9, Joy and Shan Koe Mee APKs',
+    guideTitle: 'Checklist Before Playing Shan Koe Mee Online',
+    faqTitle: 'Common Questions',
+    responsible:
+      'Shan Koe Mee and online gaming involve financial risk. Do not play under 18. Set a strict budget and treat play as entertainment only.',
+  },
+} as const;
+
+const clusterPages = [
+  {
+    href: '/joy-shan-koe-mee',
+    keyword: 'joy shan koe mee',
+    title: {
+      my: 'Joy Shan Koe Mee',
+      en: 'Joy Shan Koe Mee',
+    },
+    desc: {
+      my: 'Joy Shan Koe Mee app, table style, mobile play နှင့် M9 နှိုင်းယှဉ်ချက်ကို ဖတ်နိုင်သည်။',
+      en: 'Joy Shan Koe Mee app overview, table style, mobile play notes, and comparison with M9.',
+    },
+  },
+  {
+    href: '/m9-shan-koe-mee-login',
+    keyword: 'm9 shan koe mee login',
+    title: {
+      my: 'M9 Shan Koe Mee Login',
+      en: 'M9 Shan Koe Mee Login',
+    },
+    desc: {
+      my: 'M9 account login, password, OTP, wallet check နှင့် common login issue များကို တစ်ဆင့်ချင်းရှင်းပြသည်။',
+      en: 'Step-by-step login guidance for M9 accounts, OTP checks, wallet checks, and common access issues.',
+    },
+  },
+  {
+    href: '/shan-koe-mee-apk-download',
+    keyword: 'shan koe mee apk download',
+    title: {
+      my: 'Shan Koe Mee APK Download',
+      en: 'Shan Koe Mee APK Download',
+    },
+    desc: {
+      my: 'Android ဖုန်းတွင် Shan Koe Mee apk ကို ဘယ်လိုရွေး၊ ဘယ်လိုစစ်ပြီး ဘယ်လို install လုပ်ရမလဲဆိုတာကို ရှင်းပြသည်။',
+      en: 'A focused Android download guide covering apk checks, install flow, and safety points before playing.',
+    },
+  },
+  {
+    href: '/m9-shan-koe-mee-apk',
+    keyword: 'm9 shan koe mee apk',
+    title: {
+      my: 'M9 Shan Koe Mee APK',
+      en: 'M9 Shan Koe Mee APK',
+    },
+    desc: {
+      my: 'M9 apk version, Android setting, update ပြုလုပ်နည်းနှင့် download မလုပ်ခင် စစ်ရမည့်အချက်များ။',
+      en: 'M9 apk version checks, Android settings, update flow, and what to verify before installing.',
+    },
+  },
+] as const;
+
+const trustItems = {
+  my: [
+    ['APK source', 'Download link ကို မနှိပ်ခင် domain, app name, version နှင့် update date ကို စစ်ရန်။'],
+    ['Login safety', 'M9 Shan Koe Mee login တွင် password, OTP, wallet balance နှင့် device security ကိုစစ်ရန်။'],
+    ['Payment fit', 'KBZPay, Wave Money, bank transfer, USDT စသည့် မြန်မာအသုံးများသော payment များကို နှိုင်းယှဉ်ရန်။'],
+    ['Game intent', 'Shan Koe Mee, slots, live casino ကို မရောဘဲ မိမိလိုချင်သော game intent ကို ခွဲခြားရန်။'],
+  ],
+  en: [
+    ['APK source', 'Check the domain, app name, version and update date before installing any apk.'],
+    ['Login safety', 'For M9 Shan Koe Mee login, verify password, OTP, wallet balance and device security.'],
+    ['Payment fit', 'Compare Myanmar payment options such as KBZPay, Wave Money, bank transfer and USDT.'],
+    ['Game intent', 'Separate Shan Koe Mee intent from slots or live casino intent before choosing a platform.'],
+  ],
+} as const;
+
+const comparisonRows = {
+  my: [
+    ['M9 Shan Koe Mee', 'Login နှင့် apk intent ပြင်းသည်', 'Account, OTP, wallet, Android apk ကို အရင်စစ်သင့်သည်'],
+    ['Joy Shan Koe Mee', 'Brand search intent သီးသန့်ရှိသည်', 'Mobile play, table flow, support language ကို စစ်သင့်သည်'],
+    ['Generic Shan Koe Mee APK', 'Download intent အကျယ်ဆုံး', 'APK source, update, file permission ကို အရင်စစ်သင့်သည်'],
+  ],
+  en: [
+    ['M9 Shan Koe Mee', 'Strong login and apk intent', 'Check account access, OTP, wallet and Android apk first'],
+    ['Joy Shan Koe Mee', 'Specific brand-search intent', 'Review mobile play, table flow and support language'],
+    ['Generic Shan Koe Mee APK', 'Broadest download intent', 'Check apk source, update history and file permissions'],
+  ],
+} as const;
+
+const checklist = {
+  my: [
+    'APK ကို official-looking source မှသာ download လုပ်ပြီး file permission များကို install မလုပ်ခင် စစ်ပါ။',
+    'M9 Shan Koe Mee login မလုပ်ခင် phone number, OTP, password reset နည်းလမ်းကို မှတ်ထားပါ။',
+    'Deposit မလုပ်ခင် minimum deposit, withdrawal time, bonus rule နှင့် rollover ကို ဖတ်ပါ။',
+    'Shan Koe Mee table တွင် blind bet, turn order, card ranking စည်းကမ်းများကို အရင်နားလည်ပါ။',
+    'Loss chasing မလုပ်ရန် budget limit ကို ကြိုတင်သတ်မှတ်ပါ။',
+  ],
+  en: [
+    'Download apk files only from a source you can verify, then check file permissions before installing.',
+    'Before M9 Shan Koe Mee login, confirm your phone number, OTP access and password reset path.',
+    'Before depositing, read minimum deposit, withdrawal time, bonus rules and rollover terms.',
+    'Understand blind bet, turn order and card ranking rules before joining a Shan Koe Mee table.',
+    'Set a budget first and avoid chasing losses after a bad session.',
+  ],
+} as const;
+
+const faqs = {
+  my: [
+    ['Shan Koe Mee APK download လုပ်ဖို့ ဘာစစ်ရမလဲ?', 'App name, domain, version, permission နှင့် update date ကို စစ်ပြီးမှ install လုပ်သင့်သည်။'],
+    ['M9 Shan Koe Mee login မဝင်နိုင်ရင် ဘာလုပ်ရမလဲ?', 'Phone number, OTP, password reset, browser cache နှင့် app update ကိုစစ်ပါ။ ငွေမသွင်းခင် account access ကို အရင်ပြန်ရအောင်လုပ်သင့်သည်။'],
+    ['Joy Shan Koe Mee နဲ့ M9 ဘာကွာလဲ?', 'နှစ်ခုလုံး Shan Koe Mee intent ရှိသော်လည်း brand, login flow, app layout, promotion နှင့် payment support ကွာနိုင်သည်။'],
+  ],
+  en: [
+    ['What should I check before a Shan Koe Mee APK download?', 'Check the app name, domain, version, permissions and update date before installing.'],
+    ['What if M9 Shan Koe Mee login does not work?', 'Check phone number, OTP access, password reset, browser cache and app version before depositing money.'],
+    ['What is the difference between Joy Shan Koe Mee and M9?', 'Both target Shan Koe Mee players, but brand, login flow, app layout, promotions and payment support may differ.'],
+  ],
+} as const;
 
 export async function generateMetadata({
   params: { locale },
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'hero' });
+  if (!isLocale(locale)) return {};
+  const c = copy[locale];
   return {
-    title:
-      locale === 'my'
-        ? 'MyanmarBetHub - မြန်မာနိုင်ငံ အကောင်းဆုံး အွန်လိုင်းကာစီနိုများ ၂၀၂၆'
-        : 'MyanmarBetHub - Best Online Casinos in Myanmar 2026',
-    description:
-      locale === 'my'
-        ? 'မြန်မာကစားသမားများအတွက် လုံခြုံပြီး ယုံကြည်ရသော ကာစီနိုများကို ကျွမ်းကျင်သူများမှ သုံးသပ်ထားသည်'
-        : 'Expert-reviewed safe and trusted online casinos for Myanmar players. Compare bonuses, payment methods, and more.',
+    title: c.title,
+    description: c.description,
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -30,212 +176,172 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: t('title'),
-      description:
-        locale === 'my'
-          ? 'မြန်မာကစားသမားများအတွက် အကောင်းဆုံး ကာစီနိုများ'
-          : 'Best online casinos for Myanmar players',
-      locale: locale,
+      title: c.title,
+      description: c.description,
+      url: `${baseUrl}/${locale}`,
       type: 'website',
-      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'myan66.com' }],
+      locale,
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Myan66 Shan Koe Mee guide' }],
     },
   };
 }
 
-function HeroSection({ locale }: { locale: string }) {
-  const t = useTranslations('hero');
-  return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-dark via-brand-primary/30 to-brand-dark py-20 px-4">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-brand-accent rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-brand-secondary rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative max-w-4xl mx-auto text-center">
-        <span className="inline-flex items-center gap-2 bg-brand-accent/20 text-brand-accent text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-brand-accent/30">
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-          </svg>
-          ✓ {t('badge')}
-        </span>
-
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-          {t('title')}
-        </h1>
-        <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-          {t('subtitle')}
-        </p>
-
-        <Link
-          href={`/${locale}/online-casinos-myanmar`}
-          className="inline-flex items-center gap-2 bg-brand-accent hover:bg-yellow-400 text-black font-bold py-3.5 px-8 rounded-xl text-lg transition-all hover:scale-105 shadow-lg shadow-brand-accent/30"
-        >
-          {t('cta')} →
-        </Link>
-      </div>
-    </section>
-  );
-}
-
-function TrustBadges({ locale }: { locale: string }) {
-  const items = locale === 'my'
-    ? [
-        { icon: '🔒', title: 'လုံခြုံရေး စစ်ဆေးပြီး', desc: 'SSL ကုဒ်ဝှက်နှင့် ခိုင်မာသောလုံခြုံရေး' },
-        { icon: '⚡', title: 'မြန်ဆန်သောငွေထုတ်', desc: '၃၀ မိနစ် - ၂ နာရီအတွင်း' },
-        { icon: '🎁', title: 'မြန်မာ ဘောနပ်စ်များ', desc: 'MMK ဖြင့် ဘောနပ်စ်ရရှိနိုင်' },
-        { icon: '📱', title: 'မိုဘိုင်း အပြည့်အဝ', desc: 'Android & iOS ဖြင့် ကစားနိုင်' },
-      ]
-    : [
-        { icon: '🔒', title: 'Security Verified', desc: 'SSL encryption & strong security' },
-        { icon: '⚡', title: 'Fast Withdrawals', desc: 'Processed in 30 min – 2 hours' },
-        { icon: '🎁', title: 'Myanmar Bonuses', desc: 'Bonuses available in MMK' },
-        { icon: '📱', title: 'Fully Mobile', desc: 'Play on Android & iOS' },
-      ];
-
-  return (
-    <section className="py-10 px-4 bg-brand-dark/50 border-y border-gray-800">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-        {items.map((item) => (
-          <div key={item.title} className="flex items-center gap-3">
-            <span className="text-3xl">{item.icon}</span>
-            <div>
-              <p className="text-white font-semibold text-sm">{item.title}</p>
-              <p className="text-gray-500 text-xs">{item.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function CategoryCards({ locale }: { locale: string }) {
-  const categories = locale === 'my'
-    ? [
-        { icon: '🏆', title: 'အကောင်းဆုံး', desc: 'ထိပ်တန်း ကာစီနိုများ', href: '/best-online-casinos-myanmar', color: 'from-yellow-900/50' },
-        { icon: '🎥', title: 'တိုက်ရိုက်', desc: 'Live Dealer ဂိမ်းများ', href: '/live-casino-sites-myanmar', color: 'from-red-900/50' },
-        { icon: '📱', title: 'မိုဘိုင်း', desc: 'ဖုန်းနှင့်ကစားနိုင်', href: '/mobile-casinos-myanmar', color: 'from-blue-900/50' },
-        { icon: '⚡', title: 'မြန်ဆန်သောငွေထုတ်', desc: '30 မိနစ်အတွင်း', href: '/fast-withdrawal-casinos-myanmar', color: 'from-green-900/50' },
-        { icon: '🎁', title: 'ဘောနပ်စ်', desc: 'Welcome Bonus များ', href: '/best-welcome-bonuses-myanmar', color: 'from-purple-900/50' },
-        { icon: '✅', title: 'ယုံကြည်ရသော', desc: 'လိုင်စင်ရ ကာစီနိုများ', href: '/trusted-casino-sites-myanmar', color: 'from-teal-900/50' },
-      ]
-    : [
-        { icon: '🏆', title: 'Best Casinos', desc: 'Top rated platforms', href: '/best-online-casinos-myanmar', color: 'from-yellow-900/50' },
-        { icon: '🎥', title: 'Live Casino', desc: 'Real dealer games', href: '/live-casino-sites-myanmar', color: 'from-red-900/50' },
-        { icon: '📱', title: 'Mobile', desc: 'Play on your phone', href: '/mobile-casinos-myanmar', color: 'from-blue-900/50' },
-        { icon: '⚡', title: 'Fast Payouts', desc: 'Withdraw in 30 min', href: '/fast-withdrawal-casinos-myanmar', color: 'from-green-900/50' },
-        { icon: '🎁', title: 'Bonuses', desc: 'Welcome offers', href: '/best-welcome-bonuses-myanmar', color: 'from-purple-900/50' },
-        { icon: '✅', title: 'Trusted Sites', desc: 'Licensed & verified', href: '/trusted-casino-sites-myanmar', color: 'from-teal-900/50' },
-      ];
-
-  return (
-    <section className="py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {categories.map((cat) => (
-            <Link
-              key={cat.href}
-              href={`/${locale}${cat.href}`}
-              className={`bg-gradient-to-br ${cat.color} to-brand-card border border-gray-800 hover:border-brand-accent/50 rounded-xl p-5 group transition-all hover:scale-105`}
-            >
-              <span className="text-3xl mb-3 block">{cat.icon}</span>
-              <h3 className="text-white font-bold group-hover:text-brand-accent transition-colors">
-                {cat.title}
-              </h3>
-              <p className="text-gray-400 text-sm mt-1">{cat.desc}</p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function HomePage({ params: { locale } }: { params: { locale: string } }) {
+  if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
-  const t = useTranslations('ratings');
+  const c = copy[locale];
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: c.title,
+    description: c.description,
+    url: `${baseUrl}/${locale}`,
+    inLanguage: locale === 'my' ? 'my-MM' : 'en',
+    about: ['Shan Koe Mee', 'M9 Shan Koe Mee', 'Joy Shan Koe Mee', 'Myanmar card games'],
+    isPartOf: { '@id': `${baseUrl}/#website` },
+  };
 
   return (
     <>
-      <HeroSection locale={locale} />
-      <TrustBadges locale={locale} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
 
-      {/* Category Cards */}
-      <CategoryCards locale={locale} />
-
-      {/* Casino Rankings */}
-      <section className="py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-black text-white mb-3">{t('title')}</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">{t('subtitle')}</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {casinos.map((casino, i) => (
-              <CasinoCard key={casino.id} casino={casino} rank={i + 1} />
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Link
-              href={`/${locale}/online-casinos-myanmar`}
-              className="inline-flex items-center gap-2 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-black font-bold py-3 px-8 rounded-xl transition-all"
-            >
-              {locale === 'my' ? 'ကာစီနိုအားလုံးကြည့်ရှုပါ →' : 'View All Casinos →'}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Payment Methods Section */}
-      <section className="py-12 px-4 bg-brand-card/30 border-y border-gray-800">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-2xl font-bold text-white mb-2">
-            {locale === 'my' ? 'ထောက်ခံသောငွေပေးချေမှုနည်းလမ်းများ' : 'Supported Payment Methods'}
-          </h2>
-          <p className="text-gray-400 text-sm mb-8">
-            {locale === 'my'
-              ? 'မြန်မာကစားသမားများ အသုံးများသောနည်းလမ်းများ'
-              : 'Popular payment methods used by Myanmar players'}
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {[
-              { name: 'KBZPay', emoji: '📱' },
-              { name: 'Wave Money', emoji: '🌊' },
-              { name: 'AYA Bank', emoji: '🏦' },
-              { name: 'KBZ Bank', emoji: '🏦' },
-              { name: 'CB Pay', emoji: '💳' },
-              { name: 'USDT', emoji: '🪙' },
-              { name: 'Binance', emoji: '🔶' },
-              { name: 'OKD', emoji: '💱' },
-            ].map((m) => (
-              <div
-                key={m.name}
-                className="flex items-center gap-2 bg-brand-card border border-gray-700 rounded-lg px-4 py-2.5 text-sm text-white hover:border-brand-accent/50 transition-colors"
-              >
-                <span>{m.emoji}</span>
-                <span>{m.name}</span>
+      <section className="border-b border-gray-800 bg-brand-dark px-4 py-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div>
+              <span className="mb-5 inline-flex rounded-full border border-brand-accent/40 bg-brand-accent/10 px-4 py-2 text-sm font-semibold text-brand-accent">
+                {c.badge}
+              </span>
+              <h1 className="max-w-4xl text-4xl font-black leading-tight text-white md:text-6xl">
+                {c.h1}
+              </h1>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-300">
+                {c.subtitle}
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href={`/${locale}/shan-koe-mee-apk-download`}
+                  className="rounded-lg bg-brand-accent px-6 py-3 text-center font-bold text-black transition-colors hover:bg-yellow-400"
+                >
+                  {c.primaryCta}
+                </Link>
+                <Link
+                  href={`/${locale}/m9-shan-koe-mee-login`}
+                  className="rounded-lg border border-gray-600 px-6 py-3 text-center font-bold text-white transition-colors hover:border-brand-accent hover:text-brand-accent"
+                >
+                  {c.secondaryCta}
+                </Link>
               </div>
+            </div>
+
+            <div className="rounded-xl border border-gray-800 bg-brand-card p-6">
+              <h2 className="text-xl font-bold text-white">{c.trustTitle}</h2>
+              <div className="mt-5 space-y-4">
+                {trustItems[locale].map(([title, desc]) => (
+                  <div key={title} className="border-l-2 border-brand-accent pl-4">
+                    <p className="font-semibold text-white">{title}</p>
+                    <p className="mt-1 text-sm leading-6 text-gray-400">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-14">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl font-black text-white">{c.clusterTitle}</h2>
+            <p className="mt-4 leading-7 text-gray-400">{c.clusterIntro}</p>
+          </div>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            {clusterPages.map((page) => (
+              <Link
+                key={page.href}
+                href={`/${locale}${page.href}`}
+                className="rounded-xl border border-gray-800 bg-brand-card p-6 transition-colors hover:border-brand-accent/70"
+              >
+                <div className="flex flex-wrap gap-2 text-xs font-semibold">
+                  <span className="rounded-full bg-brand-primary px-3 py-1 text-brand-accent">{page.keyword}</span>
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-white">{page.title[locale]}</h3>
+                <p className="mt-3 text-sm leading-6 text-gray-400">{page.desc[locale]}</p>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SEO Content Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto prose prose-invert prose-sm max-w-none">
-          <h2 className="text-2xl font-bold text-white mb-4">
-            {locale === 'my'
-              ? 'မြန်မာနိုင်ငံတွင် အွန်လိုင်းကာစီနို ကစားနည်းလမ်းညွှန်'
-              : 'How to Choose an Online Casino in Myanmar'}
-          </h2>
-          <p className="text-gray-400 leading-relaxed">
-            {locale === 'my'
-              ? 'မြန်မာနိုင်ငံတွင် အွန်လိုင်းကာစီနိုကစားရာတွင် လုံခြုံရေးနှင့် ယုံကြည်စိတ်ချရမှုသည် အရေးအကြီးဆုံးဖြစ်သည်။ ကျွန်ုပ်တို့သည် ပလက်ဖောင်းတစ်ခုစီ၏ လိုင်စင်ရရှိမှု၊ ငွေပေးချေမှုစနစ်၊ ဘောနပ်စ်စည်းကမ်းများနှင့် ဖောက်သည်ဝန်ဆောင်မှုကို သေချာစစ်ဆေးသုံးသပ်ပါသည်။'
-              : 'When choosing an online casino in Myanmar, security and trustworthiness are paramount. We thoroughly review each platform\'s licensing, payment systems, bonus terms, and customer service to ensure Myanmar players have the best possible experience.'}
-          </p>
+      <section className="border-y border-gray-800 bg-brand-card/30 px-4 py-14">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-3xl font-black text-white">{c.compareTitle}</h2>
+          <div className="mt-8 overflow-hidden rounded-xl border border-gray-800">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-brand-dark text-gray-300">
+                <tr>
+                  <th className="px-4 py-3">{locale === 'my' ? 'အမျိုးအစား' : 'Option'}</th>
+                  <th className="px-4 py-3">{locale === 'my' ? 'Search Intent' : 'Search Intent'}</th>
+                  <th className="px-4 py-3">{locale === 'my' ? 'စစ်ဆေးရန်' : 'What to Check'}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-800 bg-brand-card">
+                {comparisonRows[locale].map(([option, intent, check]) => (
+                  <tr key={option}>
+                    <td className="px-4 py-4 font-semibold text-white">{option}</td>
+                    <td className="px-4 py-4 text-gray-300">{intent}</td>
+                    <td className="px-4 py-4 text-gray-400">{check}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-14">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div>
+            <h2 className="text-3xl font-black text-white">{c.guideTitle}</h2>
+            <p className="mt-4 text-sm leading-7 text-gray-400">{c.responsible}</p>
+            <a
+              href="/go/m6"
+              target="_blank"
+              rel="sponsored nofollow noopener noreferrer"
+              className="mt-6 inline-flex rounded-lg bg-brand-accent px-6 py-3 font-bold text-black transition-colors hover:bg-yellow-400"
+            >
+              {locale === 'my' ? 'Shan Koe Mee Platform ကြည့်ရန်' : 'View Shan Koe Mee Platform'}
+            </a>
+          </div>
+          <div className="rounded-xl border border-gray-800 bg-brand-card p-6">
+            <ol className="space-y-4">
+              {checklist[locale].map((item, index) => (
+                <li key={item} className="flex gap-4">
+                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-brand-primary text-sm font-bold text-brand-accent">
+                    {index + 1}
+                  </span>
+                  <span className="text-sm leading-7 text-gray-300">{item}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 pb-16">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl font-black text-white">{c.faqTitle}</h2>
+          <div className="mt-6 space-y-4">
+            {faqs[locale].map(([question, answer]) => (
+              <details key={question} className="rounded-xl border border-gray-800 bg-brand-card p-5">
+                <summary className="cursor-pointer font-semibold text-white">{question}</summary>
+                <p className="mt-3 text-sm leading-7 text-gray-400">{answer}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
     </>

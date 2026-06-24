@@ -16,7 +16,13 @@ module.exports = {
   ],
   transform: async (config, path) => {
     // Higher priority for important pages
-    const highPriority = ['/', '/online-casinos-myanmar', '/best-online-casinos-myanmar'];
+    const highPriority = [
+      '/',
+      '/joy-shan-koe-mee',
+      '/m9-shan-koe-mee-login',
+      '/shan-koe-mee-apk-download',
+      '/m9-shan-koe-mee-apk',
+    ];
     const isHigh = highPriority.some(p => path.endsWith(p));
     return {
       loc: path,

@@ -1,23 +1,34 @@
 # myan66.com
 
-> MyanmarBetHub - မြန်မာနိုင်ငံ အကောင်းဆုံး အွန်လိုင်းကာစီနိုများ ၂၀၂၆ | MyanmarBetHub
+> Myan66 - Shan Koe Mee APK and M9 Login Guide
 
-မြန်မာကစားသမားများအတွက် လုံခြုံပြီး ယုံကြည်ရသော ကာစီနိုများကို ကျွမ်းကျင်သူများမှ သုံးသပ်ထားသည်
+Myan66 is a Myanmar-focused guide for Shan Koe Mee APK downloads, M9 Shan Koe Mee login, Joy Shan Koe Mee, Android install safety, wallet checks, and responsible mobile play.
 
-## Pages
+## Primary Topic
 
-- [MyanmarBetHub - မြန်မာနိုင်ငံ အကောင်းဆုံး အွန်လိုင်းကာစီနိုများ ၂၀၂၆ | MyanmarBetHub](https://myan66.com/my): မြန်မာကစားသမားများအတွက် လုံခြုံပြီး ယုံကြည်ရသော ကာစီနိုများကို ကျွမ်းကျင်သူများမှ သုံးသပ်ထားသည်
+Shan Koe Mee, a Myanmar card-game search cluster with practical user intent around APK download, M9 login, Joy Shan Koe Mee, Android installation, wallet access, and mobile play safety.
 
-## Topics
+## Key Pages
 
-This site provides information and comparisons related to online gaming and betting platforms in Myanmar.
+- [Shan Koe Mee APK Download Myanmar 2026](https://myan66.com/my): Hub page for Shan Koe Mee APK, M9 login, Joy Shan Koe Mee, and mobile play checks.
+- [Joy Shan Koe Mee Guide](https://myan66.com/my/joy-shan-koe-mee): Brand-specific guide for Joy Shan Koe Mee, mobile play, safety checks, and comparison with M9.
+- [M9 Shan Koe Mee Login Guide](https://myan66.com/my/m9-shan-koe-mee-login): Login troubleshooting, OTP checks, wallet visibility, and account access guidance.
+- [Shan Koe Mee APK Download Guide](https://myan66.com/my/shan-koe-mee-apk-download): Android APK source checks, install flow, permissions, and payment safety.
+- [M9 Shan Koe Mee APK Guide](https://myan66.com/my/m9-shan-koe-mee-apk): M9 APK install, update flow, Android setting checks, and login connection.
 
 ## Content Language
 
-- Primary: my
+- Primary: Burmese / Myanmar (`my-MM`)
+- Secondary: English (`en`)
+
+## Editorial Notes
+
+- Content should answer specific search intent instead of presenting generic casino lists.
+- Affiliate routes use internal `/go/` redirects and are marked sponsored/nofollow.
+- Pages include 18+ and responsible-play notes because online gaming carries financial risk.
 
 ## Crawler Guidelines
 
-- This site's content is original and may be cited with attribution.
-- Please respect our robots.txt for crawl budgets.
-- For commercial use of our content, contact the site owner.
+- This site's content may be cited with attribution.
+- Respect `robots.txt`; `/go/` is excluded from crawling.
+- For commercial reuse of content, contact the site owner.

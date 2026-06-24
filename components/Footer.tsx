@@ -4,21 +4,12 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 
 const PARTNER_SITES = [
-  { name: 'Myan Casino', url: 'https://myancasino.com' },
-  { name: 'Myan Slots', url: 'https://myanslots.com' },
-  { name: 'Myan Bet App', url: 'https://myanbetapp.com' },
-  { name: 'Myan Bets', url: 'https://myanbets.com' },
-  { name: 'Myan Slots App', url: 'https://myanslotsapp.com' },
-  { name: 'Betplay03', url: 'https://betplay03.com' },
-  { name: 'Betplay04', url: 'https://betplay04.com' },
-  { name: 'Betplay06', url: 'https://betplay06.com' },
-  { name: 'Col44 Casino', url: 'https://col44.com' },
-  { name: 'Col66 Casino', url: 'https://col66.com' },
-  { name: 'Rusbeth Casino', url: 'https://rusbethcasino.com' },
-  { name: 'Zamba Slots', url: 'https://zambaslots.com' },
-  { name: 'Slots Myan', url: 'https://slotsmyan.com' },
-  { name: 'Shwe Casino 99', url: 'https://shwecasino99.com' },
-  { name: 'PV991 Casino', url: 'https://pv991.com' },
+  { name: 'Shan Koe Mee APK', url: '/go/m6' },
+  { name: 'M9 Shan Koe Mee', url: '/go/m62' },
+  { name: 'Joy Shan Koe Mee', url: '/go/m6' },
+  { name: 'Myanmar Mobile Play', url: '/go/m62' },
+  { name: 'Fast Wallet Check', url: '/go/m6' },
+  { name: 'APK Safety Guide', url: '/go/m62' },
 ];
 
 export default function Footer() {
@@ -26,11 +17,10 @@ export default function Footer() {
   const locale = useLocale();
 
   const links = [
-    { label: locale === 'my' ? 'အကောင်းဆုံးကာစီနိုများ' : 'Best Casinos', href: '/best-online-casinos-myanmar' },
-    { label: locale === 'my' ? 'တိုက်ရိုက်ကာစီနို' : 'Live Casino', href: '/live-casino-sites-myanmar' },
-    { label: locale === 'my' ? 'မိုဘိုင်းကာစီနို' : 'Mobile Casino', href: '/mobile-casinos-myanmar' },
-    { label: locale === 'my' ? 'ဘောနပ်စ်' : 'Bonuses', href: '/best-welcome-bonuses-myanmar' },
-    { label: locale === 'my' ? 'ဘောနပ်စ်စည်းကမ်း' : 'Bonus Terms', href: '/casino-bonus-terms-guide' },
+    { label: locale === 'my' ? 'Joy Shan Koe Mee' : 'Joy Shan Koe Mee', href: '/joy-shan-koe-mee' },
+    { label: locale === 'my' ? 'M9 Login' : 'M9 Login', href: '/m9-shan-koe-mee-login' },
+    { label: locale === 'my' ? 'Shan Koe Mee APK' : 'Shan Koe Mee APK', href: '/shan-koe-mee-apk-download' },
+    { label: locale === 'my' ? 'M9 APK' : 'M9 APK', href: '/m9-shan-koe-mee-apk' },
     { label: locale === 'my' ? 'ငွေပေးချေမှု' : 'Payments', href: '/casino-payment-methods-myanmar' },
     { label: locale === 'my' ? 'တာဝန်ရှိသောကစား' : 'Responsible Gambling', href: '/responsible-gambling' },
   ];
@@ -42,13 +32,13 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl font-bold text-brand-accent">Myanmar</span>
-              <span className="text-2xl font-bold text-white">BetHub</span>
+              <span className="text-2xl font-bold text-brand-accent">Myan</span>
+              <span className="text-2xl font-bold text-white">66</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               {locale === 'my'
                 ? 'မြန်မာကစားသမားများအတွက် သီးခြားတည်ဆောက်ထားသော လွတ်လပ်သောသုံးသပ်ရေးပလက်ဖောင်း'
-                : 'Independent review platform built specifically for Myanmar casino players'}
+                : 'Independent Shan Koe Mee guide built for Myanmar mobile players'}
             </p>
             {/* Age Warning */}
             <div className="mt-4 inline-flex items-center gap-2 bg-red-900/30 border border-red-800 rounded-lg px-3 py-2">
@@ -99,15 +89,15 @@ export default function Footer() {
         {/* Partner Sites */}
         <div className="border-t border-gray-800 pt-6 mb-6">
           <h3 className="text-white font-semibold mb-3 text-sm">
-            🎰 {locale === 'my' ? 'မိတ်ဖက်ကာစီနိုများ' : 'Trusted Casino Partners'}
+            {locale === 'my' ? 'Shan Koe Mee နှင့် mobile play လမ်းကြောင်းများ' : 'Shan Koe Mee and mobile play routes'}
           </h3>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
             {PARTNER_SITES.map((site) => (
               <a
-                key={site.url}
+                key={site.name}
                 href={site.url}
                 target="_blank"
-                rel="nofollow noopener noreferrer"
+                rel="sponsored nofollow noopener noreferrer"
                 className="text-yellow-400 hover:text-yellow-300 text-xs transition-colors"
               >
                 {site.name}
@@ -122,7 +112,7 @@ export default function Footer() {
             {t('disclaimer')}
           </p>
           <p className="text-gray-600 text-xs">
-            © {new Date().getFullYear()} MyanmarBetHub. {t('rights')}.
+            © {new Date().getFullYear()} Myan66. {t('rights')}.
           </p>
         </div>
       </div>
