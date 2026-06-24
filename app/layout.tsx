@@ -7,10 +7,10 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 export const metadata: Metadata = {
   metadataBase: new URL('https://myan66.com'),
   title: {
-    default: 'MyanmarBetHub - Best Online Casinos in Myanmar',
-    template: '%s | MyanmarBetHub',
+    default: 'Myan66 - Shan Koe Mee APK and M9 Login Guide',
+    template: '%s | Myan66',
   },
-  description: 'Independent reviews of the best online casinos for Myanmar players. Safe, licensed, and trusted platforms.',
+  description: 'Myanmar guide for Shan Koe Mee APK downloads, M9 Shan Koe Mee login, Joy Shan Koe Mee, and mobile play safety.',
   verification: {
     google: '_cBt0MTNpkPlANeNOa-IQj3d6wO9H9fmj1aotpKWdXE',
     other: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html>
+    <html lang="my">
       <body className={inter.variable}>{children}</body>
     </html>
   );

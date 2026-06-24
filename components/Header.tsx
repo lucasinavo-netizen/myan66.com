@@ -10,15 +10,13 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [
-    { key: 'casinos', href: '/online-casinos-myanmar' },
-    { key: 'bestCasinos', href: '/best-online-casinos-myanmar' },
-    { key: 'liveCasino', href: '/live-casino-sites-myanmar' },
-    { key: 'mobileCasino', href: '/mobile-casinos-myanmar' },
-    { key: 'fastWithdrawal', href: '/fast-withdrawal-casinos-myanmar' },
-    { key: 'bonuses', href: '/best-welcome-bonuses-myanmar' },
-    { key: 'bonusTerms', href: '/casino-bonus-terms-guide' },
-    { key: 'reviews', href: '/casino-reviews' },
+    { key: 'joyShan', href: '/joy-shan-koe-mee' },
+    { key: 'm9Login', href: '/m9-shan-koe-mee-login' },
+    { key: 'shanApk', href: '/shan-koe-mee-apk-download' },
+    { key: 'm9Apk', href: '/m9-shan-koe-mee-apk' },
     { key: 'payments', href: '/casino-payment-methods-myanmar' },
+    { key: 'mobileCasino', href: '/mobile-casinos-myanmar' },
+    { key: 'responsible', href: '/responsible-gambling' },
   ] as const;
 
   const otherLocale = locale === 'my' ? 'en' : 'my';
@@ -30,8 +28,8 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-brand-accent">Myanmar</span>
-            <span className="text-2xl font-bold text-white">BetHub</span>
+            <span className="text-2xl font-bold text-brand-accent">Myan</span>
+            <span className="text-2xl font-bold text-white">66</span>
           </Link>
 
           {/* Desktop Nav */}
