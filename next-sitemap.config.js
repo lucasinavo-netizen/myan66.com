@@ -3,6 +3,9 @@ module.exports = {
   siteUrl: process.env.SITE_URL || 'https://myan66.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
+  additionalPaths: async () => [
+    { loc: '/vi.html', changefreq: 'weekly', priority: 0.8, lastmod: new Date().toISOString() },
+  ],
   changefreq: 'weekly',
   priority: 0.7,
   robotsTxtOptions: {
