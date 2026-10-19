@@ -112,7 +112,7 @@ export default function Footer() {
             {t('disclaimer')}
           </p>
           <p className="text-gray-600 text-xs">
-            © {new Date().getFullYear()} Myan66. {t('rights')}. <a href="/vi.html" hrefLang="vi" lang="vi" className="hover:text-gray-400">Tiếng Việt</a>
+            © {new Date().getFullYear()} Myan66. {t('rights')}.
           </p>
         </div>
       </div>
